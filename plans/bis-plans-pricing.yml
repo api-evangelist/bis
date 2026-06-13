@@ -1,0 +1,30 @@
+name: BIS Stats API Plans & Pricing
+description: Pricing and access plans for the BIS SDMX RESTful API providing access to global financial statistics and banking data.
+url: https://www.bis.org/terms_statistics.htm
+plans:
+  - name: Public Access
+    description: Free, unrestricted programmatic access to all BIS statistical data via the SDMX RESTful API. No registration or API key required.
+    price: 0.00
+    currency: USD
+    unit: month
+    features:
+      - Full access to all BIS statistical datasets
+      - SDMX RESTful API (v1.4.0 and v2.x)
+      - Data in JSON, XML, and CSV formats
+      - Access to metadata and data structures
+      - Bulk download capability (CSV and SDMX formats)
+      - No authentication required
+      - Commercial use permitted with attribution
+    limits:
+      - No officially documented request rate limits
+      - BIS reserves right to limit or block IP addresses without notice
+      - Must use most current API version
+      - Cannot charge subscribers additional fees for the statistics
+    attribution:
+      required: true
+      text: BIS must be cited as the source in any publication or product using the data
+notes:
+  - The BIS API is provided on an as-is basis at no cost
+  - BIS may suspend or terminate API access at any time
+  - Users cannot imply endorsement or affiliation with the BIS
+  - Investment advice or recommendations based on BIS data are not permitted

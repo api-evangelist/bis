@@ -1,0 +1,40 @@
+name: BIS Stats API Rate Limits
+description: Rate limiting policies for the BIS SDMX RESTful API. BIS does not publish explicit rate limits but reserves the right to throttle or block access.
+url: https://www.bis.org/terms_statistics.htm
+limits:
+  - name: General Usage
+    description: No officially documented rate limits are published by BIS for their SDMX RESTful API. BIS reserves the right to limit or block IP addresses without notice.
+    type: undocumented
+    notes:
+      - BIS terms of service state they may limit or block IP addresses without notice
+      - Users must use the most current API version
+      - For large data needs, bulk download is recommended over repeated API calls
+      - HTTP 503 Service Unavailable returned when service is unavailable
+  - name: Bulk Download
+    description: Large dataset downloads are recommended via the bulk download endpoint rather than repeated API calls.
+    type: recommended-practice
+    url: https://data.bis.org/bulkdownload
+    formats:
+      - CSV (columnar and flat)
+      - SDMX 2.1 (Compact and Generic)
+http_status_codes:
+  - code: 200
+    description: Success
+  - code: 400
+    description: Bad syntax in request
+  - code: 404
+    description: Resource not found
+  - code: 406
+    description: Not acceptable (unsupported format)
+  - code: 500
+    description: Internal server error
+  - code: 501
+    description: Not implemented
+  - code: 503
+    description: Service unavailable
+recommendations:
+  - Use bulk downloads for large datasets to reduce API load
+  - Cache responses locally to minimize repeated requests
+  - Use startPeriod and endPeriod parameters to limit data returned
+  - Use the detail parameter to reduce payload size (dataonly, serieskeysonly, nodata)
+  - Use firstNObservations or lastNObservations to limit observation counts

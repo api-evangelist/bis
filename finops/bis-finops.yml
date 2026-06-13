@@ -1,0 +1,41 @@
+name: BIS Stats API FinOps
+description: Financial operations guidance for using the BIS SDMX RESTful API. The API is free and publicly accessible with no cost to consumers.
+url: https://www.bis.org/terms_statistics.htm
+cost_model:
+  type: free
+  price: 0.00
+  currency: USD
+  description: The BIS Stats API is provided free of charge on an as-is basis. There are no fees for accessing statistical data, no registration costs, and no tiered pricing.
+optimization_strategies:
+  - name: Use Bulk Downloads for Large Datasets
+    description: For comprehensive data needs, use the bulk download portal instead of repeated API calls. Available in CSV and SDMX 2.1 formats.
+    url: https://data.bis.org/bulkdownload
+    impact: Reduces load on API and simplifies large data acquisition
+  - name: Filter by Time Period
+    description: Use startPeriod and endPeriod query parameters to retrieve only the data needed, reducing response payload size.
+    parameters:
+      - startPeriod
+      - endPeriod
+    impact: Reduces bandwidth and processing time
+  - name: Use Detail Parameter
+    description: Use the detail query parameter to control data verbosity.
+    options:
+      - dataonly - Returns data without attributes
+      - serieskeysonly - Returns only series keys
+      - nodata - Returns structure without data
+    impact: Significantly reduces response size for structure exploration
+  - name: Limit Observations
+    description: Use firstNObservations or lastNObservations to limit the number of observations returned per series.
+    impact: Reduces response size for time series queries
+  - name: Wildcard Key Filtering
+    description: Use SDMX key wildcarding to retrieve only required dimensions rather than all data in a flow.
+    impact: Reduces data volume for targeted queries
+  - name: Local Caching
+    description: Cache API responses locally since BIS data is released on a scheduled calendar and does not change between releases.
+    url: https://data.bis.org/release-calendar
+    impact: Eliminates redundant API calls for unchanged data
+budget_considerations:
+  - The API incurs no direct monetary costs to consumers
+  - Infrastructure costs for consuming and storing BIS data should be considered
+  - Attribution to BIS is required in any product using the data (no licensing fee but a compliance obligation)
+  - Commercial use is permitted provided BIS is cited as the source

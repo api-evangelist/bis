@@ -1,0 +1,77 @@
+aid: bis
+name: BIS
+description: The Bank for International Settlements (BIS) provides a free SDMX RESTful API offering programmatic access to global financial statistics, international banking data, derivatives market statistics, property prices, exchange rates, and central bank research data. The API follows the SDMX REST v1.4.0 specification and supports JSON, XML, and CSV response formats with no authentication required.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/bis/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+type: Index
+tags:
+  - Financial Statistics
+  - Banking Data
+  - Derivatives
+  - Exchange Rates
+  - Central Bank
+  - SDMX
+  - Open Data
+  - International Finance
+apis:
+  - aid: bis:bis-stats-api
+    name: BIS Stats API
+    description: The BIS SDMX RESTful API provides programmatic access to data and metadata published on the BIS Data Portal, including international banking statistics, debt securities, credit data, derivatives, property prices, exchange rates, and central bank statistics. Implemented as a subset of the official SDMX RESTful API v1.4.0.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://stats.bis.org/api-doc/v1/
+    baseURL: https://stats.bis.org/api/v1
+    tags:
+      - Financial Statistics
+      - Banking Data
+      - Derivatives
+      - Exchange Rates
+      - Central Bank
+      - SDMX
+    properties:
+      - type: Documentation
+        url: https://stats.bis.org/api-doc/v1/
+      - type: OpenAPI
+        url: https://stats.bis.org/api-doc/v1/bis-stats-api-latest.yaml
+      - type: DataPortal
+        url: https://data.bis.org/
+      - type: BulkDownload
+        url: https://data.bis.org/bulkdownload
+      - type: ReleaseCalendar
+        url: https://data.bis.org/release-calendar
+      - type: TermsOfService
+        url: https://www.bis.org/terms_statistics.htm
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/bis/refs/heads/main/plans/bis-plans-pricing.yml
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/bis/refs/heads/main/rate-limits/bis-rate-limits.yml
+      - type: FinOps
+        url: https://raw.githubusercontent.com/api-evangelist/bis/refs/heads/main/finops/bis-finops.yml
+common:
+  - type: Website
+    url: https://www.bis.org/
+  - type: Documentation
+    url: https://stats.bis.org/api-doc/v1/
+  - type: GitHubOrg
+    url: https://github.com/bis-org
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/bis
+  - type: Blog
+    url: https://www.bis.org/rss/index.htm
+  - type: Pricing
+    url: https://www.bis.org/terms_statistics.htm
+  - type: StatusPage
+    url: https://data.bis.org/
+  - type: X
+    url: https://twitter.com/BIS_org
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/bis/refs/heads/main/plans/bis-plans-pricing.yml
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/bis/refs/heads/main/rate-limits/bis-rate-limits.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/bis/refs/heads/main/finops/bis-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
