@@ -1,0 +1,114 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "bis": "https://stats.bis.org/api/v1/",
+    "sdmx": "https://sdmx.org/wp-content/uploads/SDMX_3-0-0_SECTION_2_FINAL-1_0.pdf#",
+    "openapi": "https://spec.openapis.org/oas/v3.0.0#"
+  },
+  "@type": "WebAPI",
+  "@id": "https://stats.bis.org/api/v1",
+  "name": "BIS Stats API",
+  "description": "The Bank for International Settlements SDMX RESTful API providing programmatic access to global financial statistics, international banking data, derivatives market statistics, property prices, exchange rates, and central bank research data.",
+  "url": "https://stats.bis.org/api-doc/v1/",
+  "version": "1.4.0",
+  "provider": {
+    "@type": "Organization",
+    "@id": "https://www.bis.org/",
+    "name": "Bank for International Settlements",
+    "alternateName": "BIS",
+    "url": "https://www.bis.org/",
+    "sameAs": [
+      "https://twitter.com/BIS_org",
+      "https://www.linkedin.com/company/bis",
+      "https://github.com/bis-org"
+    ]
+  },
+  "documentation": "https://stats.bis.org/api-doc/v1/",
+  "termsOfService": "https://www.bis.org/terms_statistics.htm",
+  "isAccessibleForFree": true,
+  "license": "https://www.bis.org/terms_statistics.htm",
+  "encodingFormat": [
+    "application/vnd.sdmx.data+json;version=1.0.0",
+    "application/vnd.sdmx.genericdata+xml;version=2.1",
+    "application/vnd.sdmx.structurespecificdata+xml;version=2.1",
+    "application/vnd.sdmx.data+csv;version=1.0.0",
+    "application/vnd.sdmx.data+edi",
+    "application/vnd.sdmx.structure+json;version=1.0.0",
+    "application/vnd.sdmx.structure+xml;version=2.1"
+  ],
+  "availableChannel": [
+    {
+      "@type": "ServiceChannel",
+      "name": "Data Queries",
+      "description": "Retrieve statistical observations for specific dataflows and keys.",
+      "serviceUrl": "https://stats.bis.org/api/v1/data/{flow}/{key}/all"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "Data Availability Queries",
+      "description": "Check what data exists for specific dimensions and query selections.",
+      "serviceUrl": "https://stats.bis.org/api/v1/availableconstraint/{flow}/{key}/all/{componentID}"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "Structure Queries",
+      "description": "Access SDMX metadata structures including dataflows, codelists, concept schemes, and constraints.",
+      "serviceUrl": "https://stats.bis.org/api/v1/dataflow/{agencyID}/{resourceID}/{version}"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "Item Queries",
+      "description": "Retrieve individual items from concept schemes, codelists, category schemes, and hierarchical codelists.",
+      "serviceUrl": "https://stats.bis.org/api/v1/codelist/{agencyID}/{resourceID}/{version}/{itemID}"
+    }
+  ],
+  "dataset": [
+    {
+      "@type": "Dataset",
+      "name": "Effective Exchange Rates",
+      "identifier": "WS_EER",
+      "description": "BIS effective exchange rates (EER) dataset covering both nominal and real rates across multiple country baskets."
+    },
+    {
+      "@type": "Dataset",
+      "name": "International Banking Statistics",
+      "identifier": "WS_LBS_D_PUB",
+      "description": "BIS locational banking statistics tracking the international positions of banks."
+    },
+    {
+      "@type": "Dataset",
+      "name": "Central Bank Policy Rates",
+      "identifier": "WS_CBPOL_D",
+      "description": "Daily central bank policy interest rates from BIS member central banks."
+    },
+    {
+      "@type": "Dataset",
+      "name": "Credit-to-GDP Gap",
+      "identifier": "WS_CREDIT_GAP",
+      "description": "BIS credit-to-GDP gap statistics used as an early warning indicator of banking crises."
+    },
+    {
+      "@type": "Dataset",
+      "name": "Residential Property Prices",
+      "identifier": "WS_SPP",
+      "description": "Selected residential property price statistics from BIS member countries."
+    },
+    {
+      "@type": "Dataset",
+      "name": "Debt Securities Statistics",
+      "identifier": "WS_DSS",
+      "description": "BIS international debt securities statistics."
+    }
+  ],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://data.bis.org/",
+    "name": "BIS Data Portal",
+    "description": "Interactive web portal for browsing and downloading BIS statistical data."
+  },
+  "sameAs": [
+    "https://data.bis.org/",
+    "https://stats.bis.org/api-doc/v1/",
+    "https://github.com/sdmx-twg/sdmx-rest/tree/v1.4.0"
+  ]
+}

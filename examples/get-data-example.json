@@ -1,0 +1,28 @@
+{
+  "title": "BIS Stats API - Get Data Example",
+  "description": "Example request and response for retrieving BIS statistical data via the SDMX RESTful API.",
+  "request": {
+    "method": "GET",
+    "url": "https://stats.bis.org/api/v1/data/WS_EER/M.N.B.CH/all",
+    "description": "Retrieve monthly nominal broad basket effective exchange rate data for Switzerland.",
+    "pathParameters": {
+      "flow": "WS_EER",
+      "key": "M.N.B.CH"
+    },
+    "queryParameters": {
+      "startPeriod": "2020-01",
+      "endPeriod": "2023-12",
+      "detail": "full"
+    },
+    "headers": {
+      "Accept": "application/vnd.sdmx.data+json;version=1.0.0"
+    }
+  },
+  "notes": [
+    "No authentication is required for the BIS Stats API.",
+    "The key M.N.B.CH represents: Frequency=M (monthly), Type=N (nominal), Basket=B (broad), Country=CH (Switzerland).",
+    "Use '+' to combine multiple values in a key dimension, e.g. M.N+R.B.CH retrieves both nominal and real rates.",
+    "Wildcard a dimension by leaving it empty, e.g. M.N.B. returns data for all countries.",
+    "The flow parameter can include agency and version: BIS,WS_EER,1.0"
+  ]
+}

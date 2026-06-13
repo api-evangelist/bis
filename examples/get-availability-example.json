@@ -1,0 +1,29 @@
+{
+  "title": "BIS Stats API - Get Data Availability Example",
+  "description": "Example request for checking data availability for specific dimensions in the BIS SDMX API.",
+  "request": {
+    "method": "GET",
+    "url": "https://stats.bis.org/api/v1/availableconstraint/WS_EER/M.N.B./all/REF_AREA",
+    "description": "Check which country values (REF_AREA dimension) are available for monthly nominal broad basket effective exchange rates.",
+    "pathParameters": {
+      "flow": "WS_EER",
+      "key": "M.N.B.",
+      "componentID": "REF_AREA"
+    },
+    "queryParameters": {
+      "mode": "available",
+      "references": "none",
+      "startPeriod": "2020",
+      "endPeriod": "2023"
+    },
+    "headers": {
+      "Accept": "application/vnd.sdmx.structure+json;version=1.0.0"
+    }
+  },
+  "notes": [
+    "Use componentID='all' to retrieve availability for all dimensions.",
+    "mode='available' returns values that would still yield results given the current selection.",
+    "mode='exact' (default) returns values that exactly match available data.",
+    "The wildcarded last dimension in key 'M.N.B.' allows checking available country codes."
+  ]
+}

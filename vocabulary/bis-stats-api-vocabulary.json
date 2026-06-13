@@ -1,0 +1,113 @@
+{
+  "title": "BIS Stats API Vocabulary",
+  "description": "Key terms and concepts used in the BIS SDMX RESTful API.",
+  "source": "https://stats.bis.org/api-doc/v1/",
+  "version": "1.4.0",
+  "terms": [
+    {
+      "term": "SDMX",
+      "definition": "Statistical Data and Metadata eXchange. An ISO standard for the exchange of statistical data and metadata between organisations. The BIS API implements SDMX RESTful API v1.4.0.",
+      "url": "https://sdmx.org/"
+    },
+    {
+      "term": "Dataflow",
+      "definition": "A statistical domain or dataset identifier in SDMX. It defines the structure and metadata for a collection of related data. Also referred to as 'flow' in path parameters. Examples: WS_EER (effective exchange rates), WS_CBPOL_D (central bank policy rates)."
+    },
+    {
+      "term": "Key",
+      "definition": "A combination of dimension values that identifies specific series within a dataflow. Dimensions are separated by dots. Multiple values per dimension are joined with '+'. An empty position acts as a wildcard. Example: M.N.B.CH selects monthly nominal broad basket Switzerland."
+    },
+    {
+      "term": "AgencyID",
+      "definition": "The identifier of the maintenance agency responsible for an SDMX artefact. For BIS-maintained artefacts, the agencyID is 'BIS'."
+    },
+    {
+      "term": "ResourceID",
+      "definition": "The unique identifier of an SDMX artefact (dataflow, codelist, concept scheme, etc.) within a given agency."
+    },
+    {
+      "term": "Version",
+      "definition": "The version number of an SDMX artefact. Use 'latest' to retrieve the current production version. Use 'all' to retrieve all versions."
+    },
+    {
+      "term": "DataStructure",
+      "definition": "An SDMX artefact that defines the structure of a dataset, including its dimensions, attributes, and measures."
+    },
+    {
+      "term": "Codelist",
+      "definition": "An SDMX artefact that defines a list of valid codes (enumerated values) for a dimension or attribute. Example codes: frequency values (A=Annual, Q=Quarterly, M=Monthly), country codes (ISO 3166-1 alpha-2)."
+    },
+    {
+      "term": "ConceptScheme",
+      "definition": "An SDMX artefact that defines a set of concepts used as dimension or attribute identifiers within data structures."
+    },
+    {
+      "term": "CategoryScheme",
+      "definition": "An SDMX artefact that organises dataflows into a hierarchical classification of statistical subject matter areas."
+    },
+    {
+      "term": "HierarchicalCodelist",
+      "definition": "An SDMX artefact that defines code hierarchies — e.g. geographic regions containing countries."
+    },
+    {
+      "term": "ContentConstraint",
+      "definition": "An SDMX artefact that defines the valid combinations of dimension values for a specific dataflow or data provider."
+    },
+    {
+      "term": "AvailableConstraint",
+      "definition": "A derived constraint that represents data availability — which dimension values currently have data — for a specific query selection."
+    },
+    {
+      "term": "ComponentID",
+      "definition": "The identifier of a dimension, attribute, or measure within a data structure definition. Used in availability queries to scope availability checks to a single dimension."
+    },
+    {
+      "term": "startPeriod",
+      "definition": "The inclusive start of the time range for which data is requested. Accepts ISO 8601 dates (2020-01-01, 2020-01, 2020) or SDMX reporting periods (2020-Q1, 2020-W01, 2020-S1)."
+    },
+    {
+      "term": "endPeriod",
+      "definition": "The inclusive end of the time range for which data is requested. Same format as startPeriod."
+    },
+    {
+      "term": "firstNObservations",
+      "definition": "Limits the response to the N oldest observations per series matching the query."
+    },
+    {
+      "term": "lastNObservations",
+      "definition": "Limits the response to the N most recent observations per series matching the query."
+    },
+    {
+      "term": "detail (data)",
+      "definition": "Controls how much information is included in a data response. Values: full (all data and documentation), dataonly (excludes attributes), serieskeysonly (only series keys, no observations), nodata (series with attributes but no observations)."
+    },
+    {
+      "term": "detail (structure)",
+      "definition": "Controls how much information is included in a structure response. Values: allstubs, referencestubs, referencepartial, allcompletestubs, referencecompletestubs, full."
+    },
+    {
+      "term": "references",
+      "definition": "Controls whether referenced SDMX artefacts are included in a structure response. Values: none, parents, parentsandsiblings, children, descendants, all, or a specific artefact type."
+    },
+    {
+      "term": "mode",
+      "definition": "Controls the type of availability constraint returned. 'exact' returns values that match existing data; 'available' returns values that remain valid given the current query selection."
+    },
+    {
+      "term": "Accept-Encoding",
+      "definition": "HTTP header controlling response compression. Supported values: br, compress, deflate, exi, gzip, identity (default, no compression), pack200-gzip, zstd."
+    },
+    {
+      "term": "SDMX-JSON",
+      "definition": "JSON serialisation of SDMX data and structure messages. The BIS API supports SDMX-JSON v1.0.0 for both data (application/vnd.sdmx.data+json;version=1.0.0) and structure (application/vnd.sdmx.structure+json;version=1.0.0) responses."
+    },
+    {
+      "term": "SDMX-ML",
+      "definition": "XML serialisation of SDMX messages. The BIS API supports SDMX-ML 2.1 for both generic data (application/vnd.sdmx.genericdata+xml;version=2.1) and structure-specific data."
+    },
+    {
+      "term": "EDI",
+      "definition": "Electronic Data Interchange format supported by the BIS API for data (application/vnd.sdmx.data+edi) and structure (application/vnd.sdmx.structure+edi;version=1.0) responses."
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bis/main/json-schema/bis-stats-api.json",
+  "title": "BIS Stats API Schema",
+  "description": "JSON Schema definitions for the BIS SDMX RESTful API v1.4.0 parameters and response structures.",
+  "definitions": {
+    "flow": {
+      "type": "string",
+      "description": "The statistical domain (aka dataflow) of the data to be returned. Examples: WS_EER, BIS,WS_EER, BIS,WS_EER,1.0",
+      "pattern": "^([a-zA-Z][a-zA-Z\\d_-]*(\\.[a-zA-Z][a-zA-Z\\d_-]*)*,)?[a-zA-Z\\d_@$-]+(,(latest|(\\d+(\\.\\d+)*))?$"
+    },
+    "key": {
+      "type": "string",
+      "description": "The (possibly partial) key identifying the data to be returned. Use 'all' for all data, or dimension values separated by dots.",
+      "pattern": "^([\\./A-Za-z\\d_@$-]+(\\+[A-Za-z\\d_@$-]+)*)*$"
+    },
+    "agencyID": {
+      "type": "string",
+      "description": "The agency maintaining the artefact.",
+      "pattern": "^[A-Za-z][A-Za-z\\d_-]*(\\.[A-Za-z][A-Za-z\\d_-]*)*$"
+    },
+    "resourceID": {
+      "type": "string",
+      "description": "The id of the artefact.",
+      "pattern": "^[A-Za-z\\d_@$-]+$"
+    },
+    "version": {
+      "type": "string",
+      "description": "The version of the artefact. Use 'latest' for the most recent production version.",
+      "pattern": "^(latest|[\\d]+(\\.[ \\d]+)*)$"
+    },
+    "startPeriod": {
+      "type": "string",
+      "description": "The start of the period for which results should be supplied (inclusive). ISO 8601 dates or SDMX reporting periods.",
+      "pattern": "^\\d{4}-?((\\d{2}(-\\d{2})?)|A1|S[1|2]|Q[1-4]|T[1-3]|M(0[1-9]|1[0-2])|W(0[1-9]|[1-4][0-9]|5[0-3])|D(0[0-9][1-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6]))?$"
+    },
+    "endPeriod": {
+      "type": "string",
+      "description": "The end of the period for which results should be supplied (inclusive). ISO 8601 dates or SDMX reporting periods.",
+      "pattern": "^\\d{4}-?((\\d{2}(-\\d{2})?)|A1|S[1|2]|Q[1-4]|T[1-3]|M(0[1-9]|1[0-2])|W(0[1-9]|[1-4][0-9]|5[0-3])|D(0[0-9][1-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6]))?$"
+    },
+    "firstNObservations": {
+      "type": "integer",
+      "description": "The maximum number of observations to be returned starting from the oldest one.",
+      "minimum": 1
+    },
+    "lastNObservations": {
+      "type": "integer",
+      "description": "The maximum number of observations to be returned starting from the most recent one.",
+      "minimum": 1
+    },
+    "dataDetail": {
+      "type": "string",
+      "description": "The amount of information to be returned for data queries.",
+      "enum": ["full", "dataonly", "serieskeysonly", "nodata"],
+      "default": "full"
+    },
+    "structDetail": {
+      "type": "string",
+      "description": "The amount of information to be returned for structure queries.",
+      "enum": ["allstubs", "referencestubs", "referencepartial", "allcompletestubs", "referencecompletestubs", "full"],
+      "default": "full"
+    },
+    "references": {
+      "type": "string",
+      "description": "Instructs the web service to return (or not) the artefacts referenced by the artefact to be returned.",
+      "enum": ["none", "parents", "parentsandsiblings", "children", "descendants", "all", "datastructure", "categoryscheme", "conceptscheme", "codelist", "hierarchicalcodelist", "agencyscheme", "dataflow", "provisionagreement", "categorisation", "contentconstraint", "actualconstraint", "allowedconstraint"],
+      "default": "none"
+    },
+    "mode": {
+      "type": "string",
+      "description": "Instructs the web service to return exact or available data constraint.",
+      "enum": ["exact", "available"],
+      "default": "exact"
+    },
+    "acreferences": {
+      "type": "string",
+      "description": "Instructs the web service to return (or not) the artefacts referenced by the ContentConstraint.",
+      "enum": ["none", "all", "datastructure", "conceptscheme", "codelist", "dataproviderscheme", "dataflow"],
+      "default": "none"
+    },
+    "acceptEncoding": {
+      "type": "string",
+      "description": "Specifies whether the response should be compressed and how.",
+      "enum": ["br", "compress", "deflate", "exi", "gzip", "identity", "pack200-gzip", "zstd"],
+      "default": "identity"
+    },
+    "dataQueryParams": {
+      "type": "object",
+      "description": "Query parameters for data retrieval endpoints.",
+      "properties": {
+        "startPeriod": { "$ref": "#/definitions/startPeriod" },
+        "endPeriod": { "$ref": "#/definitions/endPeriod" },
+        "firstNObservations": { "$ref": "#/definitions/firstNObservations" },
+        "lastNObservations": { "$ref": "#/definitions/lastNObservations" },
+        "detail": { "$ref": "#/definitions/dataDetail" }
+      }
+    },
+    "structureQueryParams": {
+      "type": "object",
+      "description": "Query parameters for structure retrieval endpoints.",
+      "properties": {
+        "references": { "$ref": "#/definitions/references" },
+        "detail": { "$ref": "#/definitions/structDetail" }
+      }
+    }
+  }
+}
