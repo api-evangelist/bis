@@ -2,10 +2,20 @@
   "repo": "bis",
   "feeds": [
     {
+      "source": "https://www.bis.org/doclist/rss_all_categories.rss",
+      "feed_url": "https://www.bis.org/doclist/rss_all_categories.rss",
+      "title": "",
+      "saved": 21,
+      "method": "feed"
+    },
+    {
       "source": "https://www.linkedin.com/company/bis",
-      "error": "HTTPError"
+      "feed_url": "https://www.linkedin.com/company/bis",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:03:07Z",
+  "post_count": 46
 }
