@@ -1,0 +1,174 @@
+openapi: 3.0.0
+info:
+  version: 1.4.0
+  title: SDMX RESTful Data availability queries Data queries API
+  description: 'The BIS SDMX RESTful API is a subset of the official SDMX RESTful API v1.4.0, released in June 2019.
+
+
+    This service offers programmatic access to the BIS statistical data and metadata released to the public.
+
+
+    For additional information about the SDMX RESTful API, check the [official v1.4.0 sdmx-rest specification](https://github.com/sdmx-twg/sdmx-rest/tree/v1.4.0) or the [v1.4.0 documentation](https://github.com/sdmx-twg/sdmx-rest/tree/v1.4.0/v2_1/ws/rest/docs). In addition the [**useful tips for consumers**](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/tips.md) provide general guidance on the SDMX RESTful API.
+
+    '
+servers:
+- description: BIS Stats API
+  url: https://stats.bis.org/api/v1
+tags:
+- name: Data queries
+paths:
+  /data/{flow}/{key}/all:
+    get:
+      summary: Get data
+      tags:
+      - Data queries
+      parameters:
+      - $ref: '#/components/parameters/flow'
+      - $ref: '#/components/parameters/key'
+      - $ref: '#/components/parameters/startPeriod'
+      - $ref: '#/components/parameters/endPeriod'
+      - $ref: '#/components/parameters/firstNObservations'
+      - $ref: '#/components/parameters/lastNObservations'
+      - $ref: '#/components/parameters/detail'
+      - $ref: '#/components/parameters/accept-encoding'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404'
+        '406':
+          $ref: '#/components/responses/406'
+        '500':
+          $ref: '#/components/responses/500'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
+components:
+  responses:
+    '500':
+      description: Internal server error
+    '200':
+      description: OK
+      content:
+        application/vnd.sdmx.genericdata+xml;version=2.1:
+          schema:
+            type: string
+        application/vnd.sdmx.structurespecificdata+xml;version=2.1:
+          schema:
+            type: string
+        application/vnd.sdmx.data+edi:
+          schema:
+            type: string
+        application/vnd.sdmx.data+csv;version=1.0.0:
+          schema:
+            type: string
+        application/vnd.sdmx.data+json;version=1.0.0:
+          schema:
+            type: string
+    '501':
+      description: Not implemented
+    '404':
+      description: Not found
+    '400':
+      description: Bad syntax
+    '406':
+      description: Not acceptable
+    '503':
+      description: Service unavailable
+  parameters:
+    flow:
+      in: path
+      name: flow
+      description: 'The **statistical domain** (aka dataflow) of the data to be returned.
+
+
+        Examples:
+
+
+        * `WS_EER`: The ID of the domain
+
+        * `BIS,WS_EER`: The WS_EER domain, maintained by the BIS
+
+        * `BIS,WS_EER,1.0`: Version 1.0 of the WS_EER domain, maintained by the BIS
+
+        '
+      required: true
+      schema:
+        type: string
+        pattern: ^([a-zA-Z][a-zA-Z\d_-]*(\.[a-zA-Z][a-zA-Z\d_-]*)*,)?[a-zA-Z\d_@$-]+(,(latest|(\d+(\.\d+)*)))?$
+    accept-encoding:
+      in: header
+      name: Accept-Encoding
+      description: "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n"
+      schema:
+        type: string
+        enum:
+        - br
+        - compress
+        - deflate
+        - exi
+        - gzip
+        - identity
+        - pack200-gzip
+        - zstd
+        default: identity
+    detail:
+      in: query
+      name: detail
+      description: "The **amount of information** to be returned. \n\nPossible options are: \n\n* `full`: All data and documentation\n* `dataonly`: Everything except attributes\n* `serieskeysonly`: The series keys. This is useful to return the series that match a certain query, without returning the actual data (e.g. overview page)\n* `nodata`: The series, including attributes and annotations, without observations.\n"
+      required: false
+      schema:
+        type: string
+        enum:
+        - full
+        - dataonly
+        - serieskeysonly
+        - nodata
+        default: full
+    key:
+      in: path
+      name: key
+      description: "The (possibly partial) **key identifying the data to be returned**. \n\nThe keyword `all` can be used to indicate that all data belonging to the specified dataflow and provided by the specified provider must be returned.\n\nThe examples below are based on the following key: Frequency, Type, Basket, Country.\n* `M.N.B.CH`: Full key, matching exactly one series, i.e. the monthly (`M`) nominal rate (`N`) in the broad basket (`B`) for Switzerland (`CH`).\n* `M.N+R.B.CH`: Retrieves both nominal and real rates (`N+R`), matching exactly two series.\n* `M.N.B.`: The last dimension is wildcarded, and it will therefore match all countries.\n"
+      required: true
+      schema:
+        type: string
+        pattern: ^([\.A-Za-z\d_@$-]+(\+[A-Za-z\d_@$-]+)*)*$
+    endPeriod:
+      in: query
+      name: endPeriod
+      description: "The end of the period for which results should be supplied (inclusive).\n\nCan be expressed using 8601 dates or SDMX reporting periods. \n\nExamples:\n* `2000`: Year (ISO 8601)\n* `2000-01`: Month (ISO 8601)\n* `2000-01-01`: Date (ISO 8601)\n* `2000-S1`: Semester (SDMX)\n* `2000-D001`: Day (SDMX)\n"
+      required: false
+      schema:
+        type: string
+        pattern: ^\d{4}-?((\d{2}(-\d{2})?)|A1|S[1|2]|Q[1-4]|T[1-3]|M(0[1-9]|1[0-2])|W(0[1-9]|[1-4][0-9]|5[0-3])|D(0[0-9][1-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6]))?$
+    startPeriod:
+      in: query
+      name: startPeriod
+      description: "The start of the period for which results should be supplied (inclusive).\n\nCan be expressed using 8601 dates or SDMX reporting periods. \n\nExamples:\n* `2000`: Year (ISO 8601)\n* `2000-01`: Month (ISO 8601)\n* `2000-01-01`: Date (ISO 8601)\n* `2000-Q1`: Quarter (SDMX)\n* `2000-W01`: Week (SDMX)\n"
+      required: false
+      schema:
+        type: string
+        pattern: ^\d{4}-?((\d{2}(-\d{2})?)|A1|S[1|2]|Q[1-4]|T[1-3]|M(0[1-9]|1[0-2])|W(0[1-9]|[1-4][0-9]|5[0-3])|D(0[0-9][1-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6]))?$
+    lastNObservations:
+      in: query
+      name: lastNObservations
+      description: 'The maximum number of observations to be returned starting from the most recent one
+
+        '
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+    firstNObservations:
+      in: query
+      name: firstNObservations
+      description: 'The maximum number of observations to be returned starting from the oldest one
+
+        '
+      required: false
+      schema:
+        type: integer
+        minimum: 1
