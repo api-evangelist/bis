@@ -1,0 +1,20 @@
+{
+  "provider": "bis",
+  "sources": [
+    "bis-data-availability-queries-api-openapi.yml",
+    "bis-data-queries-api-openapi.yml",
+    "bis-item-queries-api-openapi.yml",
+    "bis-structure-queries-api-openapi.yml"
+  ],
+  "outputs": [
+    "bis-data-availability-queries-api-openapi.yml",
+    "bis-data-queries-api-openapi.yml",
+    "bis-item-queries-api-openapi.yml",
+    "bis-structure-queries-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
