@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SDMX RESTful Data availability queries Data queries API",
+    "version": "1.4.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stats.bis.org/api/v1/data/:flow/:key/all",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "flow",
+                "value": "",
+                "type": "path",
+                "description": "The **statistical domain** (aka dataflow) of the data to be returned.\n\nExamples:\n\n* `WS_EER`: The ID of the domain\n* `BIS,WS_EER`: The WS_EER domain, maintained by the BIS\n* `BIS,WS_EER,1.0`: Version 1.0 of the WS_EER domain, maintained by the BIS\n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The (possibly partial) **key identifying the data to be returned**. \n\nThe keyword `all` can be used to indicate that all data belonging to the specified dataflow and provided by the specified provider must be returned.\n\nThe examples below are based on the following key: Frequency, Type, Basket, Country.\n* `M.N.B.CH`: Full key, matching exactly one series, i.e. the monthly (`M`) nominal rate (`N`) in the broad basket (`B`) for Switzerland (`CH`).\n* `M.N+R.B.CH`: Retrieves both nominal and real rates (`N+R`), matching exactly two series.\n* `M.N.B.`: The last dimension is wildcarded, and it will therefore match all countries.\n"
+              },
+              {
+                "name": "startPeriod",
+                "value": "",
+                "type": "query",
+                "description": "The start of the period for which results should be supplied (inclusive).\n\nCan be expressed using 8601 dates or SDMX reporting periods. \n\nExamples:\n* `2000`: Year (ISO 8601)\n* `2000-01`: Month (ISO 8601)\n* `2000-01-01`: Date (ISO 8601)\n* `2000-Q1`: Quarter (SDMX)\n* `2000-W01`: Week (SDMX)\n"
+              },
+              {
+                "name": "endPeriod",
+                "value": "",
+                "type": "query",
+                "description": "The end of the period for which results should be supplied (inclusive).\n\nCan be expressed using 8601 dates or SDMX reporting periods. \n\nExamples:\n* `2000`: Year (ISO 8601)\n* `2000-01`: Month (ISO 8601)\n* `2000-01-01`: Date (ISO 8601)\n* `2000-S1`: Semester (SDMX)\n* `2000-D001`: Day (SDMX)\n"
+              },
+              {
+                "name": "firstNObservations",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of observations to be returned starting from the oldest one\n"
+              },
+              {
+                "name": "lastNObservations",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of observations to be returned starting from the most recent one\n"
+              },
+              {
+                "name": "detail",
+                "value": "",
+                "type": "query",
+                "description": "The **amount of information** to be returned. \n\nPossible options are: \n\n* `full`: All data and documentation\n* `dataonly`: Everything except attributes\n* `serieskeysonly`: The series keys. This is useful to return the series that match a certain query, without returning the actual data (e.g. overview page)\n* `nodata`: The series, including attributes and annotations, without observations.\n"
+              }
+            ]
+          },
+          "docs": "Get data"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

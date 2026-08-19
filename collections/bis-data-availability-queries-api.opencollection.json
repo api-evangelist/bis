@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SDMX RESTful Data availability queries API",
+    "version": "1.4.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data availability queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get information about data availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stats.bis.org/api/v1/availableconstraint/:flow/:key/all/:componentID",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "flow",
+                "value": "",
+                "type": "path",
+                "description": "The **statistical domain** (aka dataflow) of the data to be returned.\n\nExamples:\n\n* `WS_EER`: The ID of the domain\n* `BIS,WS_EER`: The WS_EER domain, maintained by the BIS\n* `BIS,WS_EER,1.0`: Version 1.0 of the WS_EER domain, maintained by the BIS\n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The (possibly partial) **key identifying the data to be returned**. \n\nThe keyword `all` can be used to indicate that all data belonging to the specified dataflow and provided by the specified provider must be returned.\n\nThe examples below are based on the following key: Frequency, Type, Basket, Country.\n* `M.N.B.CH`: Full key, matching exactly one series, i.e. the monthly (`M`) nominal rate (`N`) in the broad basket (`B`) for Switzerland (`CH`).\n* `M.N+R.B.CH`: Retrieves both nominal and real rates (`N+R`), matching exactly two series.\n* `M.N.B.`: The last dimension is wildcarded, and it will therefore match all countries.\n"
+              },
+              {
+                "name": "componentID",
+                "value": "",
+                "type": "path",
+                "description": "The id of the Dimension for which to obtain availability information about. Use all to indicate that data availability should be provided for all dimensions.\n"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Instructs the web service to return a ContentConstraint which defines a Cube Region containing values which will be returned by executing the query (mode=\"exact\") vs a Cube Region showing what values remain valid selections that could be added to the data query (mode=\"available\"). A valid selection is one which results in one or more series existing for the selected value, based on the current data query selection state defined by the current path parameters.\n"
+              },
+              {
+                "name": "references",
+                "value": "",
+                "type": "query",
+                "description": "Instructs the web service to return (or not) the artefacts referenced by the ContentConstraint to be returned.\n"
+              },
+              {
+                "name": "startPeriod",
+                "value": "",
+                "type": "query",
+                "description": "The start of the period for which results should be supplied (inclusive).\n\nCan be expressed using 8601 dates or SDMX reporting periods. \n\nExamples:\n* `2000`: Year (ISO 8601)\n* `2000-01`: Month (ISO 8601)\n* `2000-01-01`: Date (ISO 8601)\n* `2000-Q1`: Quarter (SDMX)\n* `2000-W01`: Week (SDMX)\n"
+              },
+              {
+                "name": "endPeriod",
+                "value": "",
+                "type": "query",
+                "description": "The end of the period for which results should be supplied (inclusive).\n\nCan be expressed using 8601 dates or SDMX reporting periods. \n\nExamples:\n* `2000`: Year (ISO 8601)\n* `2000-01`: Month (ISO 8601)\n* `2000-01-01`: Date (ISO 8601)\n* `2000-S1`: Semester (SDMX)\n* `2000-D001`: Day (SDMX)\n"
+              }
+            ]
+          },
+          "docs": "Get information about data availability"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

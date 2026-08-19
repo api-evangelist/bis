@@ -1,0 +1,655 @@
+{
+  "item": [
+    {
+      "id": "3724b727-e342-4f0d-9c7e-3f512fa116eb",
+      "name": "Data queries",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4880a82b-67b3-47a3-b6f5-0ccd49d09d4a",
+          "name": "Get data",
+          "request": {
+            "name": "Get data",
+            "description": {},
+            "url": {
+              "path": [
+                "data",
+                ":flow",
+                ":key",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startPeriod",
+                  "value": "<string>",
+                  "description": "The start of the period for which results should be supplied (inclusive).\n\nCan be expressed using 8601 dates or SDMX reporting periods. \n\nExamples:\n* `2000`: Year (ISO 8601)\n* `2000-01`: Month (ISO 8601)\n* `2000-01-01`: Date (ISO 8601)\n* `2000-Q1`: Quarter (SDMX)\n* `2000-W01`: Week (SDMX)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "endPeriod",
+                  "value": "<string>",
+                  "description": "The end of the period for which results should be supplied (inclusive).\n\nCan be expressed using 8601 dates or SDMX reporting periods. \n\nExamples:\n* `2000`: Year (ISO 8601)\n* `2000-01`: Month (ISO 8601)\n* `2000-01-01`: Date (ISO 8601)\n* `2000-S1`: Semester (SDMX)\n* `2000-D001`: Day (SDMX)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstNObservations",
+                  "value": "<integer>",
+                  "description": "The maximum number of observations to be returned starting from the oldest one\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastNObservations",
+                  "value": "<integer>",
+                  "description": "The maximum number of observations to be returned starting from the most recent one\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "detail",
+                  "value": "full",
+                  "description": "The **amount of information** to be returned. \n\nPossible options are: \n\n* `full`: All data and documentation\n* `dataonly`: Everything except attributes\n* `serieskeysonly`: The series keys. This is useful to return the series that match a certain query, without returning the actual data (e.g. overview page)\n* `nodata`: The series, including attributes and annotations, without observations.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow",
+                  "description": "(Required) The **statistical domain** (aka dataflow) of the data to be returned.\n\nExamples:\n\n* `WS_EER`: The ID of the domain\n* `BIS,WS_EER`: The WS_EER domain, maintained by the BIS\n* `BIS,WS_EER,1.0`: Version 1.0 of the WS_EER domain, maintained by the BIS\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) The (possibly partial) **key identifying the data to be returned**. \n\nThe keyword `all` can be used to indicate that all data belonging to the specified dataflow and provided by the specified provider must be returned.\n\nThe examples below are based on the following key: Frequency, Type, Basket, Country.\n* `M.N.B.CH`: Full key, matching exactly one series, i.e. the monthly (`M`) nominal rate (`N`) in the broad basket (`B`) for Switzerland (`CH`).\n* `M.N+R.B.CH`: Retrieves both nominal and real rates (`N+R`), matching exactly two series.\n* `M.N.B.`: The last dimension is wildcarded, and it will therefore match all countries.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                "key": "Accept-Encoding",
+                "value": "identity"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.sdmx.genericdata+xml;version=2.1"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0b860f3-2343-4f37-abc0-6af9cd312a78",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    ":flow",
+                    ":key",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "lastNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flow",
+                      "description": "(Required) The **statistical domain** (aka dataflow) of the data to be returned.\n\nExamples:\n\n* `WS_EER`: The ID of the domain\n* `BIS,WS_EER`: The WS_EER domain, maintained by the BIS\n* `BIS,WS_EER,1.0`: Version 1.0 of the WS_EER domain, maintained by the BIS\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The (possibly partial) **key identifying the data to be returned**. \n\nThe keyword `all` can be used to indicate that all data belonging to the specified dataflow and provided by the specified provider must be returned.\n\nThe examples below are based on the following key: Frequency, Type, Basket, Country.\n* `M.N.B.CH`: Full key, matching exactly one series, i.e. the monthly (`M`) nominal rate (`N`) in the broad basket (`B`) for Switzerland (`CH`).\n* `M.N+R.B.CH`: Retrieves both nominal and real rates (`N+R`), matching exactly two series.\n* `M.N.B.`: The last dimension is wildcarded, and it will therefore match all countries.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.sdmx.genericdata+xml;version=2.1"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.sdmx.data+json;version=1.0.0"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c7a20d3-c19a-41bf-9ec4-23a99b6194ec",
+              "name": "Bad syntax",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    ":flow",
+                    ":key",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "lastNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flow",
+                      "description": "(Required) The **statistical domain** (aka dataflow) of the data to be returned.\n\nExamples:\n\n* `WS_EER`: The ID of the domain\n* `BIS,WS_EER`: The WS_EER domain, maintained by the BIS\n* `BIS,WS_EER,1.0`: Version 1.0 of the WS_EER domain, maintained by the BIS\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The (possibly partial) **key identifying the data to be returned**. \n\nThe keyword `all` can be used to indicate that all data belonging to the specified dataflow and provided by the specified provider must be returned.\n\nThe examples below are based on the following key: Frequency, Type, Basket, Country.\n* `M.N.B.CH`: Full key, matching exactly one series, i.e. the monthly (`M`) nominal rate (`N`) in the broad basket (`B`) for Switzerland (`CH`).\n* `M.N+R.B.CH`: Retrieves both nominal and real rates (`N+R`), matching exactly two series.\n* `M.N.B.`: The last dimension is wildcarded, and it will therefore match all countries.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "025b4d42-bdcb-4193-bce9-33da5ab86acc",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    ":flow",
+                    ":key",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "lastNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flow",
+                      "description": "(Required) The **statistical domain** (aka dataflow) of the data to be returned.\n\nExamples:\n\n* `WS_EER`: The ID of the domain\n* `BIS,WS_EER`: The WS_EER domain, maintained by the BIS\n* `BIS,WS_EER,1.0`: Version 1.0 of the WS_EER domain, maintained by the BIS\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The (possibly partial) **key identifying the data to be returned**. \n\nThe keyword `all` can be used to indicate that all data belonging to the specified dataflow and provided by the specified provider must be returned.\n\nThe examples below are based on the following key: Frequency, Type, Basket, Country.\n* `M.N.B.CH`: Full key, matching exactly one series, i.e. the monthly (`M`) nominal rate (`N`) in the broad basket (`B`) for Switzerland (`CH`).\n* `M.N+R.B.CH`: Retrieves both nominal and real rates (`N+R`), matching exactly two series.\n* `M.N.B.`: The last dimension is wildcarded, and it will therefore match all countries.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "69620e34-fc07-4ca1-ba24-d38053acda8d",
+              "name": "Not acceptable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    ":flow",
+                    ":key",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "lastNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flow",
+                      "description": "(Required) The **statistical domain** (aka dataflow) of the data to be returned.\n\nExamples:\n\n* `WS_EER`: The ID of the domain\n* `BIS,WS_EER`: The WS_EER domain, maintained by the BIS\n* `BIS,WS_EER,1.0`: Version 1.0 of the WS_EER domain, maintained by the BIS\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The (possibly partial) **key identifying the data to be returned**. \n\nThe keyword `all` can be used to indicate that all data belonging to the specified dataflow and provided by the specified provider must be returned.\n\nThe examples below are based on the following key: Frequency, Type, Basket, Country.\n* `M.N.B.CH`: Full key, matching exactly one series, i.e. the monthly (`M`) nominal rate (`N`) in the broad basket (`B`) for Switzerland (`CH`).\n* `M.N+R.B.CH`: Retrieves both nominal and real rates (`N+R`), matching exactly two series.\n* `M.N.B.`: The last dimension is wildcarded, and it will therefore match all countries.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "92923b8f-8696-48e5-b206-f8b613eebcbe",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    ":flow",
+                    ":key",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "lastNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flow",
+                      "description": "(Required) The **statistical domain** (aka dataflow) of the data to be returned.\n\nExamples:\n\n* `WS_EER`: The ID of the domain\n* `BIS,WS_EER`: The WS_EER domain, maintained by the BIS\n* `BIS,WS_EER,1.0`: Version 1.0 of the WS_EER domain, maintained by the BIS\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The (possibly partial) **key identifying the data to be returned**. \n\nThe keyword `all` can be used to indicate that all data belonging to the specified dataflow and provided by the specified provider must be returned.\n\nThe examples below are based on the following key: Frequency, Type, Basket, Country.\n* `M.N.B.CH`: Full key, matching exactly one series, i.e. the monthly (`M`) nominal rate (`N`) in the broad basket (`B`) for Switzerland (`CH`).\n* `M.N+R.B.CH`: Retrieves both nominal and real rates (`N+R`), matching exactly two series.\n* `M.N.B.`: The last dimension is wildcarded, and it will therefore match all countries.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cd0b3c32-06d9-48ae-bd71-1dae4e9b67e1",
+              "name": "Not implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    ":flow",
+                    ":key",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "lastNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flow",
+                      "description": "(Required) The **statistical domain** (aka dataflow) of the data to be returned.\n\nExamples:\n\n* `WS_EER`: The ID of the domain\n* `BIS,WS_EER`: The WS_EER domain, maintained by the BIS\n* `BIS,WS_EER,1.0`: Version 1.0 of the WS_EER domain, maintained by the BIS\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The (possibly partial) **key identifying the data to be returned**. \n\nThe keyword `all` can be used to indicate that all data belonging to the specified dataflow and provided by the specified provider must be returned.\n\nThe examples below are based on the following key: Frequency, Type, Basket, Country.\n* `M.N.B.CH`: Full key, matching exactly one series, i.e. the monthly (`M`) nominal rate (`N`) in the broad basket (`B`) for Switzerland (`CH`).\n* `M.N+R.B.CH`: Retrieves both nominal and real rates (`N+R`), matching exactly two series.\n* `M.N.B.`: The last dimension is wildcarded, and it will therefore match all countries.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c2cbd3ed-3a1c-4151-a82d-d6c45104b602",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    ":flow",
+                    ":key",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endPeriod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "lastNObservations",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flow",
+                      "description": "(Required) The **statistical domain** (aka dataflow) of the data to be returned.\n\nExamples:\n\n* `WS_EER`: The ID of the domain\n* `BIS,WS_EER`: The WS_EER domain, maintained by the BIS\n* `BIS,WS_EER,1.0`: Version 1.0 of the WS_EER domain, maintained by the BIS\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The (possibly partial) **key identifying the data to be returned**. \n\nThe keyword `all` can be used to indicate that all data belonging to the specified dataflow and provided by the specified provider must be returned.\n\nThe examples below are based on the following key: Frequency, Type, Basket, Country.\n* `M.N.B.CH`: Full key, matching exactly one series, i.e. the monthly (`M`) nominal rate (`N`) in the broad basket (`B`) for Switzerland (`CH`).\n* `M.N+R.B.CH`: Retrieves both nominal and real rates (`N+R`), matching exactly two series.\n* `M.N.B.`: The last dimension is wildcarded, and it will therefore match all countries.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stats.bis.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cad11d6d-da18-4c35-a0f2-e4fa24e4b3a3",
+    "name": "SDMX RESTful Data availability queries Data queries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BIS SDMX RESTful API is a subset of the official SDMX RESTful API v1.4.0, released in June 2019.\n\nThis service offers programmatic access to the BIS statistical data and metadata released to the public.\n\nFor additional information about the SDMX RESTful API, check the [official v1.4.0 sdmx-rest specification](https://github.com/sdmx-twg/sdmx-rest/tree/v1.4.0) or the [v1.4.0 documentation](https://github.com/sdmx-twg/sdmx-rest/tree/v1.4.0/v2_1/ws/rest/docs). In addition the [**useful tips for consumers**](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/tips.md) provide general guidance on the SDMX RESTful API.\n",
+      "type": "text/plain"
+    }
+  }
+}

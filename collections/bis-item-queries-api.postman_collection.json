@@ -1,0 +1,2596 @@
+{
+  "item": [
+    {
+      "id": "a96d49e1-a52e-470c-a5ef-fadd124dccea",
+      "name": "Item queries",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd2c050e-772d-421c-a18f-f57dcf9f78a7",
+          "name": "Get concepts",
+          "request": {
+            "name": "Get concepts",
+            "description": {},
+            "url": {
+              "path": [
+                "conceptscheme",
+                ":agencyID",
+                ":resourceID",
+                ":version",
+                ":itemID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "references",
+                  "value": "none",
+                  "description": "Instructs the web service to return (or not) the artefacts referenced by the artefact to be returned.\n\nPossible values are: \n\n* `none`: No references will be returned\n* `parents`: Returns the artefacts that use the artefact matching the query\n* `parentsandsiblings`: Returns the artefacts that use the artefact matching the query, as well as the artefacts referenced by these artefacts\n* `children`: Returns the artefacts referenced by the artefact to be returned\n* `descendants`: References of references, up to any level, will be returned\n* `all`: The combination of parentsandsiblings and descendants\n* In addition, a concrete type of resource may also be used (for example, references=codelist).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "detail",
+                  "value": "full",
+                  "description": "The amount of information to be returned. \n\nPossible values are: \n\n* `allstubs`: All artefacts should be returned as stubs, containing only identification information, as well as the artefacts' name\n* `referencestubs`: Referenced artefacts should be returned as stubs, containing only identification information, as well as the artefacts' name\n* `referencepartial`: Referenced item schemes should only include items used by the artefact to be returned. For example, a concept scheme would only contain the concepts used in a DSD, and its isPartial flag would be set to `true`\n* `allcompletestubs`: All artefacts should be returned as complete stubs, containing identification information, the artefacts' name, description, annotations and isFinal information\n* `referencecompletestubs`: Referenced artefacts should be returned as complete stubs, containing identification information, the artefacts' name, description, annotations and isFinal information\n* `full`: All available information for all artefacts should be returned\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agencyID",
+                  "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceID",
+                  "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemID",
+                  "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                "key": "Accept-Encoding",
+                "value": "identity"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.sdmx.structure+xml;version=2.1"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a0517d1-78c1-42eb-bae2-a72e17d4f193",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conceptscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.sdmx.structure+xml;version=2.1"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.sdmx.structure+json;version=1.0.0"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18c2bffb-9400-40c9-907f-338143dc8bc0",
+              "name": "Bad syntax",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conceptscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7938e5a5-ac85-4120-8e60-cbf76ba38f5e",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conceptscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "51fc6408-658d-4a5a-bf7e-a0fc1001f81c",
+              "name": "Not acceptable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conceptscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f9eac0b4-79d1-4959-9460-634f7c9961f1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conceptscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "73761459-ebef-4347-8a83-6b867ad798ed",
+              "name": "Not implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conceptscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b5d50849-b3e8-4f6a-b44c-8771d289fc31",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conceptscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72ee2078-c465-4e0a-a1d6-897ac1dbe72a",
+          "name": "Get codes",
+          "request": {
+            "name": "Get codes",
+            "description": {},
+            "url": {
+              "path": [
+                "codelist",
+                ":agencyID",
+                ":resourceID",
+                ":version",
+                ":itemID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "references",
+                  "value": "none",
+                  "description": "Instructs the web service to return (or not) the artefacts referenced by the artefact to be returned.\n\nPossible values are: \n\n* `none`: No references will be returned\n* `parents`: Returns the artefacts that use the artefact matching the query\n* `parentsandsiblings`: Returns the artefacts that use the artefact matching the query, as well as the artefacts referenced by these artefacts\n* `children`: Returns the artefacts referenced by the artefact to be returned\n* `descendants`: References of references, up to any level, will be returned\n* `all`: The combination of parentsandsiblings and descendants\n* In addition, a concrete type of resource may also be used (for example, references=codelist).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "detail",
+                  "value": "full",
+                  "description": "The amount of information to be returned. \n\nPossible values are: \n\n* `allstubs`: All artefacts should be returned as stubs, containing only identification information, as well as the artefacts' name\n* `referencestubs`: Referenced artefacts should be returned as stubs, containing only identification information, as well as the artefacts' name\n* `referencepartial`: Referenced item schemes should only include items used by the artefact to be returned. For example, a concept scheme would only contain the concepts used in a DSD, and its isPartial flag would be set to `true`\n* `allcompletestubs`: All artefacts should be returned as complete stubs, containing identification information, the artefacts' name, description, annotations and isFinal information\n* `referencecompletestubs`: Referenced artefacts should be returned as complete stubs, containing identification information, the artefacts' name, description, annotations and isFinal information\n* `full`: All available information for all artefacts should be returned\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agencyID",
+                  "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceID",
+                  "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemID",
+                  "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                "key": "Accept-Encoding",
+                "value": "identity"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.sdmx.structure+xml;version=2.1"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1df7543e-1eaf-48eb-bb7f-c386ed01c6b7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.sdmx.structure+xml;version=2.1"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.sdmx.structure+json;version=1.0.0"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ad82c81-6b14-401c-8eb3-720359f7f526",
+              "name": "Bad syntax",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba761a93-36db-4444-9f2a-cc2ada5e0096",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b15a0af-1630-4d20-ba31-6742ab7d667e",
+              "name": "Not acceptable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ced263f9-a98d-4b3e-9e75-15c08cea958b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "944aa173-f24a-4e8a-acdc-e0bf491a7842",
+              "name": "Not implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3b9ab2c1-3fd5-4e2d-bbd7-00f30d26e5dd",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2aab36ea-46f2-4b8e-ad91-50d53d813df5",
+          "name": "Get categories",
+          "request": {
+            "name": "Get categories",
+            "description": {},
+            "url": {
+              "path": [
+                "categoryscheme",
+                ":agencyID",
+                ":resourceID",
+                ":version",
+                ":itemID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "references",
+                  "value": "none",
+                  "description": "Instructs the web service to return (or not) the artefacts referenced by the artefact to be returned.\n\nPossible values are: \n\n* `none`: No references will be returned\n* `parents`: Returns the artefacts that use the artefact matching the query\n* `parentsandsiblings`: Returns the artefacts that use the artefact matching the query, as well as the artefacts referenced by these artefacts\n* `children`: Returns the artefacts referenced by the artefact to be returned\n* `descendants`: References of references, up to any level, will be returned\n* `all`: The combination of parentsandsiblings and descendants\n* In addition, a concrete type of resource may also be used (for example, references=codelist).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "detail",
+                  "value": "full",
+                  "description": "The amount of information to be returned. \n\nPossible values are: \n\n* `allstubs`: All artefacts should be returned as stubs, containing only identification information, as well as the artefacts' name\n* `referencestubs`: Referenced artefacts should be returned as stubs, containing only identification information, as well as the artefacts' name\n* `referencepartial`: Referenced item schemes should only include items used by the artefact to be returned. For example, a concept scheme would only contain the concepts used in a DSD, and its isPartial flag would be set to `true`\n* `allcompletestubs`: All artefacts should be returned as complete stubs, containing identification information, the artefacts' name, description, annotations and isFinal information\n* `referencecompletestubs`: Referenced artefacts should be returned as complete stubs, containing identification information, the artefacts' name, description, annotations and isFinal information\n* `full`: All available information for all artefacts should be returned\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agencyID",
+                  "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceID",
+                  "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemID",
+                  "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                "key": "Accept-Encoding",
+                "value": "identity"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.sdmx.structure+xml;version=2.1"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2f77687-65ae-4555-a6c9-f8b6739980fa",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "categoryscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.sdmx.structure+xml;version=2.1"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.sdmx.structure+json;version=1.0.0"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1933fb18-00cd-478a-81a2-ed2c43b29622",
+              "name": "Bad syntax",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "categoryscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2a543e64-1b76-4bcf-bd65-8245780bc070",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "categoryscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d3df2997-9948-47e8-8e05-4f86124b163b",
+              "name": "Not acceptable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "categoryscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1e40196b-2bb4-4089-83be-16b73362de41",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "categoryscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a7257af-612a-486e-b787-024f1e68a284",
+              "name": "Not implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "categoryscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19bd1bf1-e165-4e73-b7e7-478df4587f7d",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "categoryscheme",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c6b9537-1db6-4a72-b1a5-beb7a0b43308",
+          "name": "Get hierarchies",
+          "request": {
+            "name": "Get hierarchies",
+            "description": {},
+            "url": {
+              "path": [
+                "hierarchicalcodelist",
+                ":agencyID",
+                ":resourceID",
+                ":version",
+                ":itemID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "references",
+                  "value": "none",
+                  "description": "Instructs the web service to return (or not) the artefacts referenced by the artefact to be returned.\n\nPossible values are: \n\n* `none`: No references will be returned\n* `parents`: Returns the artefacts that use the artefact matching the query\n* `parentsandsiblings`: Returns the artefacts that use the artefact matching the query, as well as the artefacts referenced by these artefacts\n* `children`: Returns the artefacts referenced by the artefact to be returned\n* `descendants`: References of references, up to any level, will be returned\n* `all`: The combination of parentsandsiblings and descendants\n* In addition, a concrete type of resource may also be used (for example, references=codelist).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "detail",
+                  "value": "full",
+                  "description": "The amount of information to be returned. \n\nPossible values are: \n\n* `allstubs`: All artefacts should be returned as stubs, containing only identification information, as well as the artefacts' name\n* `referencestubs`: Referenced artefacts should be returned as stubs, containing only identification information, as well as the artefacts' name\n* `referencepartial`: Referenced item schemes should only include items used by the artefact to be returned. For example, a concept scheme would only contain the concepts used in a DSD, and its isPartial flag would be set to `true`\n* `allcompletestubs`: All artefacts should be returned as complete stubs, containing identification information, the artefacts' name, description, annotations and isFinal information\n* `referencecompletestubs`: Referenced artefacts should be returned as complete stubs, containing identification information, the artefacts' name, description, annotations and isFinal information\n* `full`: All available information for all artefacts should be returned\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agencyID",
+                  "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceID",
+                  "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemID",
+                  "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                "key": "Accept-Encoding",
+                "value": "identity"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.sdmx.structure+xml;version=2.1"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b118b49b-6cb2-43fc-a757-596446fc86ec",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hierarchicalcodelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.sdmx.structure+xml;version=2.1"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.sdmx.structure+json;version=1.0.0"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bbe424c-096e-438c-893e-25746e677e87",
+              "name": "Bad syntax",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hierarchicalcodelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e2409e4-89c2-4317-9334-40090572f847",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hierarchicalcodelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "152d257d-9832-4ef7-9aac-5498347cfc66",
+              "name": "Not acceptable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hierarchicalcodelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "929ae144-d9a2-4996-9435-facf121ceeae",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hierarchicalcodelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d08a5d62-e52c-4881-bd68-279260ed353b",
+              "name": "Not implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hierarchicalcodelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f58151de-c9ab-4599-8372-c53b4d733584",
+              "name": "Service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hierarchicalcodelist",
+                    ":agencyID",
+                    ":resourceID",
+                    ":version",
+                    ":itemID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "references",
+                      "value": "none"
+                    },
+                    {
+                      "key": "detail",
+                      "value": "full"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyID",
+                      "description": "(Required) The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceID",
+                      "description": "(Required) The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The version of the artefact to be returned. \n\nIt is possible to set more than one version, using `+` as separator (e.g. 1.0+2.1).\n\nThe keyword `all` can be used to return all versions of the matching resource.\n\nThe keyword `latest` can be used to return the latest production version of the matching resource.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemID",
+                      "description": "(Required) The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n",
+                    "key": "Accept-Encoding",
+                    "value": "identity"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stats.bis.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "823e892e-acf3-46c0-b049-052714da28d9",
+    "name": "SDMX RESTful Data availability queries Item queries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BIS SDMX RESTful API is a subset of the official SDMX RESTful API v1.4.0, released in June 2019.\n\nThis service offers programmatic access to the BIS statistical data and metadata released to the public.\n\nFor additional information about the SDMX RESTful API, check the [official v1.4.0 sdmx-rest specification](https://github.com/sdmx-twg/sdmx-rest/tree/v1.4.0) or the [v1.4.0 documentation](https://github.com/sdmx-twg/sdmx-rest/tree/v1.4.0/v2_1/ws/rest/docs). In addition the [**useful tips for consumers**](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/tips.md) provide general guidance on the SDMX RESTful API.\n",
+      "type": "text/plain"
+    }
+  }
+}
