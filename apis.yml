@@ -65,6 +65,8 @@ apis:
   humanURL: https://stats.bis.org/api-doc/v1/
   baseURL: https://stats.bis.org/api/v1
   tags:
+  - Data Queries
+  tags_raw:
   - Data queries
   properties:
   - type: OpenAPI
