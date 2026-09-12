@@ -2,10 +2,6 @@
   "repo": "bis",
   "feeds": [
     {
-      "source": "https://www.bis.org/doclist/rss_all_categories.rss",
-      "error": "HTTPError"
-    },
-    {
       "source": "https://www.linkedin.com/company/bis",
       "feed_url": "https://www.linkedin.com/company/bis",
       "title": "",
@@ -13,7 +9,7 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-08-30T22:33:40Z",
+  "fetched": "2026-09-06T19:17:18Z",
   "post_count": 132,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
