@@ -1,10 +1,7 @@
 {
   "provider": "bis",
   "sources": [
-    "bis-data-availability-queries-api-openapi.yml",
-    "bis-data-queries-api-openapi.yml",
-    "bis-item-queries-api-openapi.yml",
-    "bis-structure-queries-api-openapi.yml"
+    "_original/bis-stats-api.yaml"
   ],
   "outputs": [
     "bis-data-availability-queries-api-openapi.yml",
@@ -15,6 +12,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "bis-stats-api.yaml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "bis-stats-api.yaml: declared missing tag: Data availability queries",
+    "bis-stats-api.yaml: declared missing tag: Data queries",
+    "bis-stats-api.yaml: declared missing tag: Item queries",
+    "bis-stats-api.yaml: declared missing tag: Structure queries",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "bis-data-availability-queries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bis-data-queries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bis-item-queries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bis-structure-queries-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

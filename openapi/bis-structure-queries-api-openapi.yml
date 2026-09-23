@@ -1,16 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.4.0
-  title: SDMX RESTful Data availability queries Structure queries API
+  title: SDMX RESTful Structure queries API
   description: 'The BIS SDMX RESTful API is a subset of the official SDMX RESTful API v1.4.0, released in June 2019.
 
 
     This service offers programmatic access to the BIS statistical data and metadata released to the public.
 
 
-    For additional information about the SDMX RESTful API, check the [official v1.4.0 sdmx-rest specification](https://github.com/sdmx-twg/sdmx-rest/tree/v1.4.0) or the [v1.4.0 documentation](https://github.com/sdmx-twg/sdmx-rest/tree/v1.4.0/v2_1/ws/rest/docs). In addition the [**useful tips for consumers**](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/tips.md) provide general guidance on the SDMX RESTful API.
-
-    '
+    For additional information about the SDMX RESTful API, check the official v1.4.0 sdmx-rest specification or the v1.4.0 documentation. In addition the **useful tips for consumers** provide general guidance on the SDMX RESTful API.'
 servers:
 - description: BIS Stats API
   url: https://stats.bis.org/api/v1
@@ -44,6 +42,8 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
+      operationId: getDatastructureByAgencyIDByResourceIDByVersion
+      x-operation-id-source: derived
   /dataflow/{agencyID}/{resourceID}/{version}:
     get:
       summary: Get dataflows
@@ -71,6 +71,8 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
+      operationId: getDataflowByAgencyIDByResourceIDByVersion
+      x-operation-id-source: derived
   /categorisation/{agencyID}/{resourceID}/{version}:
     get:
       summary: Get categorisations
@@ -98,6 +100,8 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
+      operationId: getCategorisationByAgencyIDByResourceIDByVersion
+      x-operation-id-source: derived
   /contentconstraint/{agencyID}/{resourceID}/{version}:
     get:
       summary: Get content constraints
@@ -125,6 +129,8 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
+      operationId: getContentconstraintByAgencyIDByResourceIDByVersion
+      x-operation-id-source: derived
   /actualconstraint/{agencyID}/{resourceID}/{version}:
     get:
       summary: Get actual constraints
@@ -152,6 +158,8 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
+      operationId: getActualconstraintByAgencyIDByResourceIDByVersion
+      x-operation-id-source: derived
   /allowedconstraint/{agencyID}/{resourceID}/{version}:
     get:
       summary: Get allowed constraints
@@ -179,6 +187,8 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
+      operationId: getAllowedconstraintByAgencyIDByResourceIDByVersion
+      x-operation-id-source: derived
   /structure/{agencyID}/{resourceID}/{version}:
     get:
       summary: Get structures
@@ -206,6 +216,8 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
+      operationId: getStructureByAgencyIDByResourceIDByVersion
+      x-operation-id-source: derived
   /conceptscheme/{agencyID}/{resourceID}/{version}:
     get:
       summary: Get concept schemes
@@ -233,6 +245,8 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
+      operationId: getConceptschemeByAgencyIDByResourceIDByVersion
+      x-operation-id-source: derived
   /codelist/{agencyID}/{resourceID}/{version}:
     get:
       summary: Get codelists
@@ -260,6 +274,8 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
+      operationId: getCodelistByAgencyIDByResourceIDByVersion
+      x-operation-id-source: derived
   /categoryscheme/{agencyID}/{resourceID}/{version}:
     get:
       summary: Get category schemes
@@ -287,6 +303,8 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
+      operationId: getCategoryschemeByAgencyIDByResourceIDByVersion
+      x-operation-id-source: derived
   /hierarchicalcodelist/{agencyID}/{resourceID}/{version}:
     get:
       summary: Get hierarchical codelists
@@ -314,6 +332,8 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
+      operationId: getHierarchicalcodelistByAgencyIDByResourceIDByVersion
+      x-operation-id-source: derived
   /agencyscheme/{agencyID}/{resourceID}/{version}:
     get:
       summary: Get agency schemes
@@ -341,8 +361,12 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
+      operationId: getAgencyschemeByAgencyIDByResourceIDByVersion
+      x-operation-id-source: derived
 components:
   responses:
+    '404':
+      description: Not found
     '500':
       description: Internal server error
     200-struct:
@@ -357,16 +381,14 @@ components:
         application/vnd.sdmx.structure+edi;version=1.0:
           schema:
             type: string
-    '501':
-      description: Not implemented
-    '404':
-      description: Not found
-    '400':
-      description: Bad syntax
-    '406':
-      description: Not acceptable
     '503':
       description: Service unavailable
+    '406':
+      description: Not acceptable
+    '400':
+      description: Bad syntax
+    '501':
+      description: Not implemented
   parameters:
     accept-encoding:
       in: header
@@ -384,14 +406,14 @@ components:
         - pack200-gzip
         - zstd
         default: identity
-    resourceIDs:
+    agencies:
       in: path
-      name: resourceID
-      description: "The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+      name: agencyID
+      description: "The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
       required: true
       schema:
         type: string
-        pattern: ^([A-Za-z\d_@$-]+(\+[A-Za-z\d_@$-]+)*)*$
+        pattern: ^(([A-Za-z][A-Za-z\d_-]*)(\.[A-Za-z][A-Za-z\d_-]*)*,)?[A-Za-z\d_@$-]+(\+([A-Za-z][A-Za-z\d_-]*(\.[A-Za-z][A-Za-z\d_-]*)*,)?[A-Za-z\d_@$-]+)*$
     references:
       in: query
       name: references
@@ -419,14 +441,6 @@ components:
         - actualconstraint
         - allowedconstraint
         default: none
-    agencies:
-      in: path
-      name: agencyID
-      description: "The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
-      required: true
-      schema:
-        type: string
-        pattern: ^(([A-Za-z][A-Za-z\d_-]*)(\.[A-Za-z][A-Za-z\d_-]*)*,)?[A-Za-z\d_@$-]+(\+([A-Za-z][A-Za-z\d_-]*(\.[A-Za-z][A-Za-z\d_-]*)*,)?[A-Za-z\d_@$-]+)*$
     versions:
       in: path
       name: version
@@ -450,3 +464,11 @@ components:
         - referencecompletestubs
         - full
         default: full
+    resourceIDs:
+      in: path
+      name: resourceID
+      description: "The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+      required: true
+      schema:
+        type: string
+        pattern: ^([A-Za-z\d_@$-]+(\+[A-Za-z\d_@$-]+)*)*$
