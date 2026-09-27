@@ -367,8 +367,12 @@ components:
   responses:
     '404':
       description: Not found
-    '500':
-      description: Internal server error
+    '400':
+      description: Bad syntax
+    '501':
+      description: Not implemented
+    '406':
+      description: Not acceptable
     200-struct:
       description: OK
       content:
@@ -383,37 +387,9 @@ components:
             type: string
     '503':
       description: Service unavailable
-    '406':
-      description: Not acceptable
-    '400':
-      description: Bad syntax
-    '501':
-      description: Not implemented
+    '500':
+      description: Internal server error
   parameters:
-    accept-encoding:
-      in: header
-      name: Accept-Encoding
-      description: "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n"
-      schema:
-        type: string
-        enum:
-        - br
-        - compress
-        - deflate
-        - exi
-        - gzip
-        - identity
-        - pack200-gzip
-        - zstd
-        default: identity
-    agencies:
-      in: path
-      name: agencyID
-      description: "The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
-      required: true
-      schema:
-        type: string
-        pattern: ^(([A-Za-z][A-Za-z\d_-]*)(\.[A-Za-z][A-Za-z\d_-]*)*,)?[A-Za-z\d_@$-]+(\+([A-Za-z][A-Za-z\d_-]*(\.[A-Za-z][A-Za-z\d_-]*)*,)?[A-Za-z\d_@$-]+)*$
     references:
       in: query
       name: references
@@ -441,6 +417,22 @@ components:
         - actualconstraint
         - allowedconstraint
         default: none
+    accept-encoding:
+      in: header
+      name: Accept-Encoding
+      description: "Specifies whether the response should be compressed and how. \n\n`identity` (the default) indicates that no compression will be performed.\n"
+      schema:
+        type: string
+        enum:
+        - br
+        - compress
+        - deflate
+        - exi
+        - gzip
+        - identity
+        - pack200-gzip
+        - zstd
+        default: identity
     versions:
       in: path
       name: version
@@ -449,6 +441,14 @@ components:
       schema:
         type: string
         pattern: ^(all|latest|[\d]+(\.[\d]+)*(\+[\d]+(\.[\d]+)*)*)$
+    agencies:
+      in: path
+      name: agencyID
+      description: "The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+      required: true
+      schema:
+        type: string
+        pattern: ^(([A-Za-z][A-Za-z\d_-]*)(\.[A-Za-z][A-Za-z\d_-]*)*,)?[A-Za-z\d_@$-]+(\+([A-Za-z][A-Za-z\d_-]*(\.[A-Za-z][A-Za-z\d_-]*)*,)?[A-Za-z\d_@$-]+)*$
     structDetail:
       in: query
       name: detail

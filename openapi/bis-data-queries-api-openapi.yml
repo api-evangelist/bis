@@ -50,14 +50,10 @@ components:
   responses:
     '404':
       description: Not found
-    '500':
-      description: Internal server error
-    '503':
-      description: Service unavailable
-    '406':
-      description: Not acceptable
     '400':
       description: Bad syntax
+    '501':
+      description: Not implemented
     '200':
       description: OK
       content:
@@ -76,17 +72,21 @@ components:
         application/vnd.sdmx.data+json;version=1.0.0:
           schema:
             type: string
-    '501':
-      description: Not implemented
+    '406':
+      description: Not acceptable
+    '503':
+      description: Service unavailable
+    '500':
+      description: Internal server error
   parameters:
-    key:
-      in: path
-      name: key
-      description: "The (possibly partial) **key identifying the data to be returned**. \n\nThe keyword `all` can be used to indicate that all data belonging to the specified dataflow and provided by the specified provider must be returned.\n\nThe examples below are based on the following key: Frequency, Type, Basket, Country.\n* `M.N.B.CH`: Full key, matching exactly one series, i.e. the monthly (`M`) nominal rate (`N`) in the broad basket (`B`) for Switzerland (`CH`).\n* `M.N+R.B.CH`: Retrieves both nominal and real rates (`N+R`), matching exactly two series.\n* `M.N.B.`: The last dimension is wildcarded, and it will therefore match all countries.\n"
-      required: true
+    startPeriod:
+      in: query
+      name: startPeriod
+      description: "The start of the period for which results should be supplied (inclusive).\n\nCan be expressed using 8601 dates or SDMX reporting periods. \n\nExamples:\n* `2000`: Year (ISO 8601)\n* `2000-01`: Month (ISO 8601)\n* `2000-01-01`: Date (ISO 8601)\n* `2000-Q1`: Quarter (SDMX)\n* `2000-W01`: Week (SDMX)\n"
+      required: false
       schema:
         type: string
-        pattern: ^([\.A-Za-z\d_@$-]+(\+[A-Za-z\d_@$-]+)*)*$
+        pattern: ^\d{4}-?((\d{2}(-\d{2})?)|A1|S[1|2]|Q[1-4]|T[1-3]|M(0[1-9]|1[0-2])|W(0[1-9]|[1-4][0-9]|5[0-3])|D(0[0-9][1-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6]))?$
     accept-encoding:
       in: header
       name: Accept-Encoding
@@ -103,19 +103,6 @@ components:
         - pack200-gzip
         - zstd
         default: identity
-    detail:
-      in: query
-      name: detail
-      description: "The **amount of information** to be returned. \n\nPossible options are: \n\n* `full`: All data and documentation\n* `dataonly`: Everything except attributes\n* `serieskeysonly`: The series keys. This is useful to return the series that match a certain query, without returning the actual data (e.g. overview page)\n* `nodata`: The series, including attributes and annotations, without observations.\n"
-      required: false
-      schema:
-        type: string
-        enum:
-        - full
-        - dataonly
-        - serieskeysonly
-        - nodata
-        default: full
     flow:
       in: path
       name: flow
@@ -136,24 +123,6 @@ components:
       schema:
         type: string
         pattern: ^([a-zA-Z][a-zA-Z\d_-]*(\.[a-zA-Z][a-zA-Z\d_-]*)*,)?[a-zA-Z\d_@$-]+(,(latest|(\d+(\.\d+)*)))?$
-    firstNObservations:
-      in: query
-      name: firstNObservations
-      description: 'The maximum number of observations to be returned starting from the oldest one
-
-        '
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-    startPeriod:
-      in: query
-      name: startPeriod
-      description: "The start of the period for which results should be supplied (inclusive).\n\nCan be expressed using 8601 dates or SDMX reporting periods. \n\nExamples:\n* `2000`: Year (ISO 8601)\n* `2000-01`: Month (ISO 8601)\n* `2000-01-01`: Date (ISO 8601)\n* `2000-Q1`: Quarter (SDMX)\n* `2000-W01`: Week (SDMX)\n"
-      required: false
-      schema:
-        type: string
-        pattern: ^\d{4}-?((\d{2}(-\d{2})?)|A1|S[1|2]|Q[1-4]|T[1-3]|M(0[1-9]|1[0-2])|W(0[1-9]|[1-4][0-9]|5[0-3])|D(0[0-9][1-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6]))?$
     lastNObservations:
       in: query
       name: lastNObservations
@@ -164,6 +133,37 @@ components:
       schema:
         type: integer
         minimum: 1
+    firstNObservations:
+      in: query
+      name: firstNObservations
+      description: 'The maximum number of observations to be returned starting from the oldest one
+
+        '
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+    detail:
+      in: query
+      name: detail
+      description: "The **amount of information** to be returned. \n\nPossible options are: \n\n* `full`: All data and documentation\n* `dataonly`: Everything except attributes\n* `serieskeysonly`: The series keys. This is useful to return the series that match a certain query, without returning the actual data (e.g. overview page)\n* `nodata`: The series, including attributes and annotations, without observations.\n"
+      required: false
+      schema:
+        type: string
+        enum:
+        - full
+        - dataonly
+        - serieskeysonly
+        - nodata
+        default: full
+    key:
+      in: path
+      name: key
+      description: "The (possibly partial) **key identifying the data to be returned**. \n\nThe keyword `all` can be used to indicate that all data belonging to the specified dataflow and provided by the specified provider must be returned.\n\nThe examples below are based on the following key: Frequency, Type, Basket, Country.\n* `M.N.B.CH`: Full key, matching exactly one series, i.e. the monthly (`M`) nominal rate (`N`) in the broad basket (`B`) for Switzerland (`CH`).\n* `M.N+R.B.CH`: Retrieves both nominal and real rates (`N+R`), matching exactly two series.\n* `M.N.B.`: The last dimension is wildcarded, and it will therefore match all countries.\n"
+      required: true
+      schema:
+        type: string
+        pattern: ^([\.A-Za-z\d_@$-]+(\+[A-Za-z\d_@$-]+)*)*$
     endPeriod:
       in: query
       name: endPeriod
