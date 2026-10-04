@@ -136,32 +136,50 @@ paths:
       operationId: getHierarchicalcodelistByAgencyIDByResourceIDByVersionByItemID
       x-operation-id-source: derived
 components:
-  responses:
-    '404':
-      description: Not found
-    '501':
-      description: Not implemented
-    200-struct:
-      description: OK
-      content:
-        application/vnd.sdmx.structure+xml;version=2.1:
-          schema:
-            type: string
-        application/vnd.sdmx.structure+json;version=1.0.0:
-          schema:
-            type: string
-        application/vnd.sdmx.structure+edi;version=1.0:
-          schema:
-            type: string
-    '406':
-      description: Not acceptable
-    '503':
-      description: Service unavailable
-    '400':
-      description: Bad syntax
-    '500':
-      description: Internal server error
   parameters:
+    references:
+      in: query
+      name: references
+      description: "Instructs the web service to return (or not) the artefacts referenced by the artefact to be returned.\n\nPossible values are: \n\n* `none`: No references will be returned\n* `parents`: Returns the artefacts that use the artefact matching the query\n* `parentsandsiblings`: Returns the artefacts that use the artefact matching the query, as well as the artefacts referenced by these artefacts\n* `children`: Returns the artefacts referenced by the artefact to be returned\n* `descendants`: References of references, up to any level, will be returned\n* `all`: The combination of parentsandsiblings and descendants\n* In addition, a concrete type of resource may also be used (for example, references=codelist).\n"
+      required: false
+      schema:
+        type: string
+        enum:
+        - none
+        - parents
+        - parentsandsiblings
+        - children
+        - descendants
+        - all
+        - datastructure
+        - categoryscheme
+        - conceptscheme
+        - codelist
+        - hierarchicalcodelist
+        - agencyscheme
+        - dataflow
+        - provisionagreement
+        - categorisation
+        - contentconstraint
+        - actualconstraint
+        - allowedconstraint
+        default: none
+    agencies:
+      in: path
+      name: agencyID
+      description: "The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
+      required: true
+      schema:
+        type: string
+        pattern: ^(([A-Za-z][A-Za-z\d_-]*)(\.[A-Za-z][A-Za-z\d_-]*)*,)?[A-Za-z\d_@$-]+(\+([A-Za-z][A-Za-z\d_-]*(\.[A-Za-z][A-Za-z\d_-]*)*,)?[A-Za-z\d_@$-]+)*$
+    resourceIDs:
+      in: path
+      name: resourceID
+      description: "The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
+      required: true
+      schema:
+        type: string
+        pattern: ^([A-Za-z\d_@$-]+(\+[A-Za-z\d_@$-]+)*)*$
     accept-encoding:
       in: header
       name: Accept-Encoding
@@ -193,57 +211,6 @@ components:
         - referencecompletestubs
         - full
         default: full
-    items:
-      in: path
-      name: itemID
-      description: "The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
-      required: true
-      schema:
-        type: string
-        pattern: ^[A-Za-z\d_@$-]+(\.[A-Za-z\d_@$-]+)*(\+[A-Za-z\d_@$-]+(\.[A-Za-z\d_@$-]+)*)*$
-    agencies:
-      in: path
-      name: agencyID
-      description: "The agency maintaining the artefact to be returned. \n\nIt is possible to set more than one agency, using `+` as separator (e.g. BIS+ECB).\n\nThe keyword `all` can be used to indicate that artefacts maintained by any maintenance agency should be returned.\n"
-      required: true
-      schema:
-        type: string
-        pattern: ^(([A-Za-z][A-Za-z\d_-]*)(\.[A-Za-z][A-Za-z\d_-]*)*,)?[A-Za-z\d_@$-]+(\+([A-Za-z][A-Za-z\d_-]*(\.[A-Za-z][A-Za-z\d_-]*)*,)?[A-Za-z\d_@$-]+)*$
-    references:
-      in: query
-      name: references
-      description: "Instructs the web service to return (or not) the artefacts referenced by the artefact to be returned.\n\nPossible values are: \n\n* `none`: No references will be returned\n* `parents`: Returns the artefacts that use the artefact matching the query\n* `parentsandsiblings`: Returns the artefacts that use the artefact matching the query, as well as the artefacts referenced by these artefacts\n* `children`: Returns the artefacts referenced by the artefact to be returned\n* `descendants`: References of references, up to any level, will be returned\n* `all`: The combination of parentsandsiblings and descendants\n* In addition, a concrete type of resource may also be used (for example, references=codelist).\n"
-      required: false
-      schema:
-        type: string
-        enum:
-        - none
-        - parents
-        - parentsandsiblings
-        - children
-        - descendants
-        - all
-        - datastructure
-        - categoryscheme
-        - conceptscheme
-        - codelist
-        - hierarchicalcodelist
-        - agencyscheme
-        - dataflow
-        - provisionagreement
-        - categorisation
-        - contentconstraint
-        - actualconstraint
-        - allowedconstraint
-        default: none
-    resourceIDs:
-      in: path
-      name: resourceID
-      description: "The id of the artefact to be returned.\n\nIt is possible to set more than one id, using `+` as separator (e.g. CL_FREQ+CL_CONF_STATUS).\n\nThe keyword `all` can be used to indicate that any artefact of the specified resource type, {agencyID} and {version} should be returned. \n"
-      required: true
-      schema:
-        type: string
-        pattern: ^([A-Za-z\d_@$-]+(\+[A-Za-z\d_@$-]+)*)*$
     versions:
       in: path
       name: version
@@ -252,3 +219,36 @@ components:
       schema:
         type: string
         pattern: ^(all|latest|[\d]+(\.[\d]+)*(\+[\d]+(\.[\d]+)*)*)$
+    items:
+      in: path
+      name: itemID
+      description: "The id of the item to be returned. \n\nIt is possible to set more than one id, using `+` as separator (e.g. A+Q+M).\n\nThe keyword `all` can be used to return all items of the matching resource.\n"
+      required: true
+      schema:
+        type: string
+        pattern: ^[A-Za-z\d_@$-]+(\.[A-Za-z\d_@$-]+)*(\+[A-Za-z\d_@$-]+(\.[A-Za-z\d_@$-]+)*)*$
+  responses:
+    '503':
+      description: Service unavailable
+    200-struct:
+      description: OK
+      content:
+        application/vnd.sdmx.structure+xml;version=2.1:
+          schema:
+            type: string
+        application/vnd.sdmx.structure+json;version=1.0.0:
+          schema:
+            type: string
+        application/vnd.sdmx.structure+edi;version=1.0:
+          schema:
+            type: string
+    '501':
+      description: Not implemented
+    '406':
+      description: Not acceptable
+    '500':
+      description: Internal server error
+    '400':
+      description: Bad syntax
+    '404':
+      description: Not found
