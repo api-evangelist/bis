@@ -1,4 +1,4 @@
-# BIS - Bank for International Settlements
+# BIS
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,31 +64,149 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-APIs.json profile for the Bank for International Settlements (BIS) SDMX RESTful API.
+The Bank for International Settlements (BIS) provides a free SDMX RESTful API offering programmatic access to global financial statistics, international banking data, derivatives market statistics, property prices, exchange rates, and central bank research data. The API follows the SDMX REST v1.4.0 specification and supports JSON, XML, and CSV response formats with no authentication required.
 
-The BIS provides free programmatic access to global financial statistics, international banking data, derivatives market statistics, property prices, exchange rates, and central bank research data via a SDMX REST API.
+**Areas:** Financial Statistics · Banking Data · Derivatives · Exchange Rates · Central Bank · SDMX · Open Data · International Finance
 
-- **API Base URL:** https://stats.bis.org/api/v1
-- **Documentation:** https://stats.bis.org/api-doc/v1/
-- **Data Portal:** https://data.bis.org/
-- **Terms of Use:** https://www.bis.org/terms_statistics.htm
+## BIS on APIs.io
 
-## APIs
+Everything profiled for BIS is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bis/](https://apis.io/providers/bis/)** — or go straight to one of the APIs or properties below.
 
-- **BIS Stats API** - SDMX RESTful API providing access to all BIS statistical datasets (free, no auth required)
+### APIs (4)
 
-## Datasets Available
+- [BIS Data availability queries API](https://apis.io/apis/bis/bis-data-availability-queries-api/) — The Data availability queries API from BIS — 1 operation(s) for data availability queries.
+- [BIS Data queries API](https://apis.io/apis/bis/bis-data-queries-api/) — The Data queries API from BIS — 1 operation(s) for data queries.
+- [BIS Item queries API](https://apis.io/apis/bis/bis-item-queries-api/) — The Item queries API from BIS — 4 operation(s) for item queries.
+- [BIS Structure queries API](https://apis.io/apis/bis/bis-structure-queries-api/) — The Structure queries API from BIS — 12 operation(s) for structure queries.
 
-- International Banking Statistics (Locational and Consolidated)
-- Debt Securities Statistics
-- Credit to the Non-Financial Sector
-- Global Liquidity Indicators
-- OTC and Exchange-Traded Derivatives Statistics
-- Residential and Commercial Property Prices
-- Consumer Prices and Exchange Rates
-- Central Bank Policy Rates and Total Assets
-- Payment System Indicators
+### Published properties
 
-## Maintainer
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Kin Lane - kin@apievangelist.com
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Bis Agentic Access](https://apis.io/agentic-access/bis/bis-agentic-access/)
+
+#### JSON Schema (1)
+
+The data models the API reads and writes.
+
+- [BIS Stats API Schema](https://apis.io/schemas/bis/bis-stats-api/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Bis Stats Api Context](https://apis.io/jsonld/bis/bis-stats-api/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Get Availability Example](https://apis.io/examples/bis/get-availability-example/)
+- [Get Data Example](https://apis.io/examples/bis/get-data-example/)
+- [Get Dataflow Example](https://apis.io/examples/bis/get-dataflow-example/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [SDMX RESTful Data availability queries API](https://apis.io/collections/bis/open-bis-data-availability-queries-api/)
+- [SDMX RESTful Data availability queries Data queries API](https://apis.io/collections/bis/open-bis-data-queries-api/)
+- [SDMX RESTful Data availability queries Item queries API](https://apis.io/collections/bis/open-bis-item-queries-api/)
+- [SDMX RESTful Data availability queries Structure queries API](https://apis.io/collections/bis/open-bis-structure-queries-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [BIS — jsonschema rules](https://apis.io/rules/bis/bis-jsonschema-spectral-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bis Domain Security](https://apis.io/security/bis/bis-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Bis Plans Pricing](https://apis.io/plans/bis/bis-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Bis Rate Limits](https://apis.io/rate-limits/bis/bis-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Bis Finops](https://apis.io/finops/bis/bis-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.bis.org/)
+- [Documentation](https://stats.bis.org/api-doc/v1/)
+- [Pricing](https://www.bis.org/terms_statistics.htm)
+- [Blog](https://www.bis.org/rss/index.htm)
+- [Status](https://data.bis.org/)
+
+## API Evangelist rating
+
+**Kin Score 29.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 43.2 |
+| Contract governance | 9.8 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 26.3 |
+
+**Agent readiness 20.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 19.4** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bis/](https://apis.io/providers/bis/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for BIS: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bis/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
